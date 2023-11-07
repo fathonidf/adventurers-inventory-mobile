@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
-    MyHomePage({Key? key}) : super(key: key);
-    final List<ShopItem> items = [
-      ShopItem("Lihat Produk", Icons.checklist),
-      ShopItem("Tambah Produk", Icons.add_shopping_cart),
-      ShopItem("Logout", Icons.logout),
-    ];
+  MyHomePage({Key? key}) : super(key: key);
+  final List<ShopItem> items = [
+    ShopItem("Lihat Item", Icons.checklist, Colors.red),
+    ShopItem("Tambah Item", Icons.add_shopping_cart, Colors.yellow.shade600),
+    ShopItem("Logout", Icons.logout, Colors.green),
+  ];
 
-    @override
-    Widget build(BuildContext context) {
-        return Scaffold(
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Shopping List',
+          'Adventurer\'s Inventory ',
         ),
       ),
       body: SingleChildScrollView(
@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
-                  'PBP Shop', // Text yang menandakan toko
+                  'Inventory Store', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -54,7 +54,7 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
     );
-    }
+  }
 }
 
 class ShopCard extends StatelessWidget {
@@ -65,7 +65,6 @@ class ShopCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.indigo,
       child: InkWell(
         // Area responsive terhadap sentuhan
         onTap: () {
@@ -73,10 +72,14 @@ class ShopCard extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!")));
+                content: Text("Kamu telah menekan tombol ${item.name}!"),
+                backgroundColor: item.color,
+              )
+            );
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text
+          color: item.color,
           padding: const EdgeInsets.all(8),
           child: Center(
             child: Column(
@@ -105,6 +108,7 @@ class ShopCard extends StatelessWidget {
 class ShopItem {
   final String name;
   final IconData icon;
+  final Color color;
 
-  ShopItem(this.name, this.icon);
+  ShopItem(this.name, this.icon, this.color);
 }
