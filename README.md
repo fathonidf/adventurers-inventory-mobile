@@ -119,6 +119,7 @@ class MyApp extends StatelessWidget {
 ```
 
 Pada kode di atas, menjadikan home dengan memanggil fungsi dari class `MyHomePage` yang berada pada `menu.dart`. Agar dapat diakses, maka file diimport dengan `import 'package:adventurers_inventory/menu.dart';`
+
 2. Membuat dan mendefinisikan suatu class untuk barang-barang yang akan dijual sebagai berikut
 
 ```dart
