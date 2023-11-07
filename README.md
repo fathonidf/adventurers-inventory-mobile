@@ -5,7 +5,9 @@ PBP E`
 # Tugas 7
 
 <details>
-<summary>**Apa perbedaan utama antara stateless dan stateful widget dalam konteks pengembangan aplikasi Flutter?**</summary>
+<summary>Apa perbedaan utama antara stateless dan stateful widget dalam konteks pengembangan aplikasi Flutter?</summary>
+
+<br>
 
 `state` pada flutter adalah data atau variabel yang digunakan untuk membangun UI (User Interface) di flutter yang dapat berubah selama waktu aplikasi berjalan. `state` merujuk kepada data yang memengaruhi tampilan atau perilaku dari suatu widget. State adalah salah satu konsep utama dalam pembuatan aplikasi Flutter.
 
@@ -43,7 +45,7 @@ class MyHomePage extends statefulWidget {
 </details>
 
 <details>
-<summary>**Sebutkan seluruh widget yang kamu gunakan untuk menyelesaikan tugas ini dan jelaskan fungsinya masing-masing.**</summary>
+<summary>Sebutkan seluruh widget yang kamu gunakan untuk menyelesaikan tugas ini dan jelaskan fungsinya masing-masing.</summary>
 
 - `MaterialApp`: Ini adalah widget yang digunakan untuk menginisialisasi aplikasi Flutter, dan di dalamnya, Anda dapat mengatur konfigurasi global seperti tema.
 
@@ -75,6 +77,8 @@ class MyHomePage extends statefulWidget {
 
 <details>
 <summary>Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)</summary>
+
+<br>
 
 - [x] Membuat sebuah program Flutter baru dengan tema inventory seperti tugas-tugas sebelumnya.
 
