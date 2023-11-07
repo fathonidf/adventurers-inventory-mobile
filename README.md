@@ -254,29 +254,29 @@ class ShopCard extends StatelessWidget {
 
 Card tersebut akan ditampilkan dengan iterasi oleh MyHomePage.
 
-    - [x] Melihat daftar item `Lihat Item`
+- [x] Melihat daftar item `Lihat Item`
 
-    ```dart
-        final List<ShopItem> items = [
-        ShopItem("Lihat Item", Icons.checklist, Colors.red),
-    ];
-    ```
+```dart
+    final List<ShopItem> items = [
+    ShopItem("Lihat Item", Icons.checklist, Colors.red),
+];
+```
 
-    - [x] Menambah item `Tambah Item`
+- [x] Menambah item `Tambah Item`
 
-    ```dart
-        final List<ShopItem> items = [
-        ShopItem("Tambah Item", Icons.add_shopping_cart, Colors.yellow.shade600),
-    ];
-    ```
+```dart
+    final List<ShopItem> items = [
+    ShopItem("Tambah Item", Icons.add_shopping_cart, Colors.yellow.shade600),
+];
+```
 
-    - [x] Logout `Logout`
+- [x] Logout `Logout`
 
-    ```dart
-        final List<ShopItem> items = [
-        ShopItem("Logout", Icons.logout, Colors.green),
-    ];
-    ```
+```dart
+    final List<ShopItem> items = [
+    ShopItem("Logout", Icons.logout, Colors.green),
+];
+```
 
 - [x] Memunculkan Snackbar dengan tulisan:
     - [x] "Kamu telah menekan tombol Lihat Item" ketika tombol `Lihat Item` ditekan.
