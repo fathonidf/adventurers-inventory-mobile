@@ -2,7 +2,6 @@ import 'package:adventurers_inventory/models/item.dart';
 import 'package:adventurers_inventory/screens/list_item.dart';
 import 'package:adventurers_inventory/screens/login.dart';
 import 'package:flutter/material.dart';
-// Impor halaman ShopFormPage jika sudah dibuat
 import 'package:adventurers_inventory/screens/shoplist_form.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -51,8 +50,8 @@ class ShopCard extends StatelessWidget {
 
           else if (item.name == "Logout") {
             final response = await request.logout(
-                // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-                "http://127.0.0.1:8000//auth/logout/");
+                // Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                "https://daffa-mohamad-tugas.pbp.cs.ui.ac.id/auth/logout/");
             String message = response["message"];
             if (response['status']) {
               String uname = response["username"];
