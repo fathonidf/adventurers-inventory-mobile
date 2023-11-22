@@ -40,20 +40,214 @@ Dengan menggunakan CookieRequest seperti di atas, Anda dapat membuat instance Co
 <details>
 <summary>Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.</summary>
 
+Mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada aplikasi Flutter melibatkan beberapa langkah utama. Ini mencakup pengiriman request HTTP ke server, penerimaan response dalam format JSON, parsing data JSON tersebut, dan akhirnya menampilkan data dalam UI Flutter. Berikut adalah penjelasan rinci dari setiap langkah:
 
+Mengirim Request HTTP:
+Pertama, aplikasi Flutter mengirimkan request HTTP ke server atau endpoint API yang menyediakan data JSON. Biasanya, ini dilakukan menggunakan paket http yang tersedia di Flutter.
+
+Contoh kode untuk mengirim request:
+
+```dart
+Copy code
+var url = Uri.parse('https://example.com/data');
+var response = await http.get(url);
+```
+
+Menerima Response JSON:
+Setelah request terkirim, aplikasi akan menerima response dari server. Jika request berhasil, response ini akan berisi data dalam format JSON.
+
+Menguraikan (Parsing) JSON:
+Langkah selanjutnya adalah menguraikan response JSON tersebut menjadi struktur data yang bisa digunakan oleh Flutter. Ada dua cara umum untuk melakukan ini:
+
+Menggunakan Dynamic Typing: Menguraikan JSON menjadi Map<String, dynamic> atau List<dynamic> menggunakan jsonDecode dari dart:convert. Metode ini tidak memerlukan pembuatan model kelas terlebih dahulu.
+
+Contoh:
+
+```dart
+Copy code
+var jsonData = jsonDecode(response.body);
+```
+
+Menggunakan Model Kelas: Membuat model kelas untuk merepresentasikan data JSON dan menggunakan jsonDecode untuk menguraikan JSON ke dalam instance dari model tersebut. Ini memberikan keuntungan dari type safety dan kemudahan pengelolaan.
+
+Contoh model:
+
+```dart
+Copy code
+class DataModel {
+  final String id;
+  final String name;
+  // Konstruktor dan metode lainnya
+}
+```
+
+Contoh penguraian:
+
+```dart
+Copy code
+var dataModel = DataModel.fromJson(jsonDecode(response.body));
+```
+
+Menampilkan Data pada UI:
+Setelah data JSON berhasil diuraikan, langkah terakhir adalah menampilkannya dalam UI Flutter. Ini bisa dilakukan dengan menggunakan berbagai widget Flutter, seperti Text, ListView, Card, dll.
+
+Contoh:
+
+```dart
+Copy code
+ListView.builder(
+  itemCount: data.length,
+  itemBuilder: (context, index) {
+    return ListTile(
+      title: Text(data[index].name),
+      // Widget lainnya
+    );
+  },
+)
+```
+
+Kesimpulan:
+Proses pengambilan data dari JSON hingga ditampilkan pada Flutter melibatkan beberapa langkah penting, mulai dari pengiriman request, parsing JSON, dan akhirnya menampilkan data dalam UI. Dengan menggunakan paket http untuk request dan dart:convert untuk parsing JSON, Flutter menyediakan cara yang efisien dan fleksibel untuk menangani data JSON.
 
 </details>
 
 
 <details>
 <summary>Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.</summary>
+
+Mekanisme autentikasi dari input data akun pada Flutter hingga proses autentikasi oleh Django dan tampilnya menu pada Flutter melibatkan beberapa langkah terintegrasi. Berikut adalah langkah-langkah tersebut:
+
+Input Data Akun pada Flutter:
+Pengguna memasukkan data akun seperti username dan password melalui antarmuka pengguna (UI) Flutter. Ini umumnya dilakukan menggunakan widget seperti TextFormField atau input widget serupa.
+
+Mengirim Data ke Server Django:
+Setelah pengguna menekan tombol login, aplikasi Flutter akan mengirimkan data ke server Django. Proses ini biasanya dilakukan dengan membuat request HTTP POST menggunakan paket seperti http di Flutter.
+
+Contoh kode untuk mengirim data:
+
+```dart
+Copy code
+var url = Uri.parse('http://yourdjangoapp.com/api/login/');
+var response = await http.post(
+  url,
+  body: {'username': 'user', 'password': 'pass'}
+);
+```
+
+Proses Autentikasi di Django:
+Di sisi server Django, data yang diterima akan diproses. Django akan memeriksa apakah kombinasi username dan password cocok dengan yang ada di database.
+
+Jika valid, Django akan menghasilkan token (misalnya menggunakan Django Rest Framework Token Authentication) dan mengirimkannya sebagai response.
+Jika tidak valid, Django akan mengirimkan response error.
+Menerima Response di Flutter:
+Aplikasi Flutter akan menerima response dari Django. Jika autentikasi berhasil, aplikasi menyimpan token tersebut (biasanya di SharedPreferences untuk penggunaan selanjutnya). Jika gagal, aplikasi dapat menampilkan pesan kesalahan.
+
+Contoh:
+
+```dart
+Copy code
+if (authSuccess) {
+  // Menyimpan token
+  // Navigasi ke halaman utama atau menu utama aplikasi
+} else {
+  // Menampilkan pesan kesalahan
+}
+```
+
+Menampilkan Menu di Flutter:
+Setelah autentikasi berhasil, aplikasi Flutter dapat menavigasikan pengguna ke halaman utama atau menu utama aplikasi. Ini biasanya dilakukan dengan menggunakan Navigator untuk mengubah halaman.
+
+Contoh:
+
+```dart
+Copy code
+if (authSuccess) {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(builder: (context) => MainMenu()),
+  );
+}
+```
+
+Penggunaan Token untuk Request Berikutnya:
+Token yang disimpan digunakan untuk autentikasi pada request-request berikutnya ke server Django. Header Authorization dengan token biasanya ditambahkan pada setiap request yang memerlukan autentikasi.
+
+Contoh:
+
+```dart
+Copy code
+var response = await http.get(
+  protectedUrl,
+  headers: {'Authorization': 'Token $yourToken'},
+);
+```
+
+Kesimpulan:
+Proses autentikasi antara aplikasi Flutter dan server Django melibatkan pertukaran data antara klien dan server, validasi kredensial oleh Django, dan penggunaan token untuk sesi yang terautentikasi. Flutter bertanggung jawab untuk mengumpulkan data pengguna dan menampilkan UI sesuai dengan status autentikasi, sementara Django menangani verifikasi kredensial dan mengeluarkan token.
+
 </details>
 
 
 <details>
 <summary>Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.</summary>
+
+
+MaterialApp: Pada Flutter, MaterialApp digunakan sebagai titik awal aplikasi yang mengikuti panduan desain Material Design. Ini mengatur tema secara global untuk aplikasi dan menyediakan navigasi antar-halaman.
+
+Scaffold: Scaffold adalah widget yang menyediakan struktur dasar layout Material. Ini mencakup elemen-elemen seperti app bar, body, floating action button, dan lainnya.
+
+AppBar: AppBar digunakan untuk menampilkan bar aplikasi di bagian atas layar. Biasanya berisi judul aplikasi, ikon, dan tindakan yang dapat dilakukan oleh pengguna.
+
+TextFormField: Widget ini memungkinkan pengguna memasukkan data melalui formulir teks. Umumnya digunakan untuk input seperti username dan password.
+
+ListView: ListView adalah widget scrollable yang digunakan untuk menampilkan daftar item dalam bentuk linear, baik secara vertikal maupun horizontal.
+
+Text: Text digunakan untuk menampilkan teks sederhana pada antarmuka pengguna.
+
+Image: Image digunakan untuk menampilkan gambar dari berbagai sumber, seperti jaringan atau aset lokal.
+
+Navigator: Navigator digunakan untuk mengatur rute halaman di aplikasi Flutter. Ini memungkinkan navigasi antar-halaman.
+
+FutureBuilder: FutureBuilder membangun widget berdasarkan hasil terakhir dari interaksi Future, seperti request HTTP. Ini mempermudah penanganan pembaruan UI berdasarkan data yang diterima dari proses async.
+
+Card: Card adalah widget Material dengan sudut melengkung dan bayangan. Biasanya digunakan untuk menampilkan konten secara terorganisir.
+
+Padding: Padding digunakan untuk menambahkan padding di sekeliling widget anaknya, membantu mengontrol ruang di sekitar elemen.
+
+Column/Row: Column dan Row digunakan untuk menata widget anaknya secara vertikal (Column) atau horizontal (Row).
+
+Icon: Icon digunakan untuk menampilkan ikon dari set Material Icons.
+
+IconButton: IconButton adalah tombol dengan area tekan yang menampilkan ikon. Sering digunakan di AppBar untuk aksi cepat.
+
+CircularProgressIndicator: CircularProgressIndicator digunakan untuk menampilkan indikator loading berputar ketika aplikasi sedang melakukan tugas yang memerlukan waktu.
+
+SharedPreferences: Bukan widget, tetapi digunakan untuk menyimpan data secara lokal di perangkat. Berguna untuk menyimpan preferensi pengguna atau data aplikasi kecil lainnya.
+
 </details>
 
+<details>
+<summary>Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).</summary>
+
+Memastikan deployment proyek tugas Django kamu telah berjalan dengan baik.
+
+
+Membuat halaman login pada proyek tugas Flutter.
+
+
+Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter.
+
+
+Membuat model kustom sesuai dengan proyek aplikasi Django.
+
+
+Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah kamu deploy.
+
+
+Tampilkan name, amount, dan description dari masing-masing item pada halaman ini.
+
+
+</details>
 
 # Tugas 8
 <details>
