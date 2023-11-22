@@ -1,4 +1,4 @@
-import 'package:adventurers_inventory/screens/items_list.dart';
+import 'package:adventurers_inventory/screens/list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:adventurers_inventory/screens/menu.dart';
 // Impor halaman ShopFormPage jika sudah dibuat
@@ -71,21 +71,32 @@ class LeftDrawer extends StatelessWidget {
                   ));
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.checklist),
-            title: const Text('Lihat Item'),
-            // Bagian redirection ke ItemsListPage
-            onTap: () {
-              /*
-              Buatlah routing ke ItemsListPage di sini,
-              setelah halaman ItemsListPage sudah dibuat.
-              */
-              Navigator.pushReplacement(
+          // ListTile(
+          //   leading: const Icon(Icons.checklist),
+          //   title: const Text('Lihat Item'),
+          //   // Bagian redirection ke ItemsListPage
+          //   onTap: () {
+          //     /*
+          //     Buatlah routing ke ItemsListPage di sini,
+          //     setelah halaman ItemsListPage sudah dibuat.
+          //     */
+          //     Navigator.pushReplacement(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => ItemsListPage(),
+          //         ));
+          //   },
+          // ),
+            ListTile(
+              leading: const Icon(Icons.shopping_basket),
+              title: const Text('Daftar Item'),
+              onTap: () {
+                  // Route menu ke halaman Item
+                  Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => ItemsListPage(),
-                  ));
-            },
+                  MaterialPageRoute(builder: (context) => const ItemPage()),
+                  );
+              },
           ),
         ],
       ),

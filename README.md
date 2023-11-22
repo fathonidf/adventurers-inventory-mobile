@@ -2,6 +2,59 @@
 `Daffa Mohamad Fathoni 2206824161
 PBP E`
 
+# Tugas 9
+
+<details>
+<summary>Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?</summary>
+
+Pengambilan data JSON sendiri tidak memerlukan pembuatan model terlebih dahulu. JSON (JavaScript Object Notation) adalah format data ringan yang digunakan untuk pertukaran data antar aplikasi. Jadi, Anda dapat mengambil data JSON langsung tanpa membangun model khusus.
+
+Namun, apakah Anda memerlukan pembuatan model tergantung pada tujuan pengambilan data tersebut. Jika Anda hanya ingin membaca atau mengambil data dari file JSON atau endpoint API, Anda tidak perlu membuat model. Anda dapat menggunakan bahasa pemrograman atau alat yang mendukung manipulasi data JSON, seperti Python dengan library json atau JavaScript dengan JSON.parse().
+
+</details>
+
+<details>
+<summary>Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.</summary>
+
+Dalam konteks aplikasi Flutter yang berkomunikasi dengan server, penggunaan cookies seringkali terlibat dalam mekanisme otentikasi atau manajemen sesi. Cookies dapat digunakan untuk menyimpan informasi otentikasi atau data sesi yang diperlukan oleh server.
+
+Namun, secara umum, jika Anda memiliki kebutuhan untuk menggunakan cookies di seluruh aplikasi Flutter Anda, Anda mungkin ingin membuat singleton atau objek yang dapat diakses secara global untuk menangani manajemen cookies tersebut. Alasan untuk ini dapat mencakup:
+
+Konsistensi: Memiliki satu instance yang menangani manajemen cookies dapat memastikan konsistensi pengelolaan cookies di seluruh aplikasi. Jika Anda membuat instance CookieRequest dan membagikannya ke semua komponen, Anda dapat memastikan bahwa semua komponen menggunakan cookies yang sama.
+
+Dapat Dikonfigurasi Secara Sentral: Dengan menggunakan singleton atau objek yang dapat diakses secara global, Anda dapat dengan mudah menambahkan konfigurasi atau opsi terkait cookies di satu tempat. Ini memudahkan pengelolaan dan perubahan konfigurasi di masa depan.
+
+Kemudahan Penggunaan: Dengan menggunakan satu instance untuk menangani cookies, Anda mengurangi kebutuhan untuk melewatkan atau menyimpan cookies di banyak tempat. Ini dapat meningkatkan kemudahan penggunaan dan pemeliharaan.
+
+Contoh sederhana dalam Flutter bisa terlihat seperti ini:
+
+```dart
+final request = context.watch<CookieRequest>();
+```
+
+Dengan menggunakan CookieRequest seperti di atas, Anda dapat membuat instance CookieRequest di satu tempat dan menggunakannya di seluruh aplikasi Anda untuk menangani cookies.
+
+</details>
+
+
+<details>
+<summary>Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.</summary>
+
+
+
+</details>
+
+
+<details>
+<summary>Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.</summary>
+</details>
+
+
+<details>
+<summary>Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.</summary>
+</details>
+
+
 # Tugas 8
 <details>
 <summary>Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!</summary>
